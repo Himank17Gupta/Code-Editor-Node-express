@@ -1,7 +1,7 @@
 const fs =require('fs');
 const bindTestCase=require('./javaBindTestcases');
 
-function prepareCodeForJavaTC(res,codebyclient){
+function prepareCodeForJavaTC(res,codebyclient,mode){
 
 console.log('prepare for Test Case fxn called') ;
 
@@ -15,9 +15,9 @@ var content="xyz";
     fs.writeFile('JavaCodetoCompile.java', content, (err) => {
         if (err) throw err;
     
-        console.log('code ready...start compilation!');
-        res.send('code ready...start compilation!');
-        bindTestCase('JavaCodetoCompile') ;
+        console.log('code ready...binding testcases!');
+  //      res.send('code ready...start compilation!');
+        bindTestCase(res,'JavaCodetoCompile',mode) ;
     });
 
     });

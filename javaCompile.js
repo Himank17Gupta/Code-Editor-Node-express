@@ -1,27 +1,33 @@
 const {exec} = require('child_process');
 
 
-function javaCompile(filename){
+function javaCompile(res,filename){
 
 
  exec('javac ' + filename +'.java' , function(err, stdout, stderr){
     if(err){
         console.log("err",err);
+        res.send(err);
     }
-    if(stderr){
+   else if(stderr){
         console.log("stderr",stderr);
+        res.json({"compilation error":stderr});
     }
     else{
         exec('java ' +filename, function(err, stdout, stderr){
             if(err){
                 console.log("err",err);
+                res.json({"run time error":err});
             }
-            if(stderr){
+            else if(stderr){
                 console.log("stderr",stderr);
+                res.json({"run time error":stderr})
             }
-            else
+            else{
             console.log(stdout);
-    });
+            res.json({"results":stdout});
+            }
+        });
 }
 });
 

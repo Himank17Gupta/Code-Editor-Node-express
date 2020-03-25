@@ -15,7 +15,7 @@ route.post('/run',(req,res)=>{
     var lang=req.body.lang;
     var code=req.body.code;
     if(lang=="java"){
-    prepareCodeforTS(res,code);
+    prepareCodeforTS(res,code,"run");
     }
 
 });
@@ -25,7 +25,7 @@ route.post('/submit',(req,res)=>{
     var lang=req.body.lang;
     var code=req.body.code;
     if(lang=="java"){
-    prepareCodeforTS(res,code);
+    prepareCodeforTS(res,code,"submit");
     }
 
 });
