@@ -20,7 +20,7 @@ app.get('/',(req,res)=>{
                         res.send('Hello from the back of online compiler!');
                     });
 
-//app.use('/user',require('./controllers/user'));
+app.use('/user',require('./codeRun'));
 
 app.use((req,res)=>res.send('invalid request configured'));
 
