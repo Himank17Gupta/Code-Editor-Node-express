@@ -1,5 +1,5 @@
 // Java program to find factorial of given number 
-class JavaCodetoCompile 
+class JavaCodetoCompileS
 { 
 	// Method to find factorial of given number
      
