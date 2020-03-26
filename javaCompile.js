@@ -79,7 +79,7 @@ else if(lang=="C++"){
             res.send(arr);
         }
         else{
-            exec('./'+filename , function(err, stdout, stderr){
+            exec(filename +".exe", function(err, stdout, stderr){
                 if(err){
                     console.log("err",err);
                     arr.push(err.toString());
@@ -106,7 +106,7 @@ else if(lang=="C++"){
         var javac=   execSync("g++ -o " + filename + " "+filename+".cpp" );
         console.log(javac.toString());
                     try{
-                        var java= execSync('./'+filename );
+                        var java= execSync(filename +".exe");
                         console.log(java.toString());
                         return (java.toString());
                     }

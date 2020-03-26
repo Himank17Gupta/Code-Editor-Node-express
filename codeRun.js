@@ -25,9 +25,7 @@ route.post('/submit',(req,res)=>{
 
     var lang=req.body.lang;
     var code=req.body.code;
-    if(lang=="java"){
-    prepareCodeforTS(res,code,"submit");
-    }
+    prepareCodeforTS(lang,res,code,"submit");
 
 });
 

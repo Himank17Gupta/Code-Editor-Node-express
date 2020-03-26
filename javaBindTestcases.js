@@ -21,7 +21,7 @@ if(lang=="java"){
     if (err) throw err;
     
     console.log('code ready...start compilation!');
-    JavaCompile(res,filename,mode);
+    JavaCompile(lang,res,filename,mode);
     });
 
     });
@@ -40,12 +40,12 @@ content=arr[0]+ " " +testCase+" "+arr[1];
 
 
 fs.writeFileSync(filename+"S.java",content);
-let r= JavaCompile(res,filename+"S",mode) ;
+let r= JavaCompile(lang,res,filename+"S",mode) ;
 results.push(r);
 
 });
 
-if(results.length==SubmitCases.length){ res.send(results);v}
+if(results.length==SubmitCases.length){ res.send(results);}
 }
 
 }

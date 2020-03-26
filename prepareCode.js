@@ -19,7 +19,7 @@ fs.readFile('CodeSignature.java', 'utf8', function (error, data) {
         if (err) throw err;
     
         console.log('code ready...binding testcases!');
-        bindTestCase(res,'JavaCodetoCompile',mode) ;
+        bindTestCase(lang,res,'JavaCodetoCompile',mode) ;
     });
 
     });
@@ -36,7 +36,7 @@ else if(mode=="submit"){
             if (err) throw err;
         
             console.log('code ready...binding testcases!');
-            bindTestCase(res,'JavaCodetoCompile',mode) ;
+            bindTestCase(lang,res,'JavaCodetoCompile',mode) ;
         });
     
         });
@@ -44,9 +44,9 @@ else if(mode=="submit"){
 }
 
 }
-    if(lang=="C++"){
+   else if(lang=="C++"){
+
         var content="";
-            if(mode=="run"){
 
                 fs.readFile('CodeSignature.cpp', 'utf8', function (error, data) {
                     if (error) throw error;
@@ -61,27 +61,13 @@ else if(mode=="submit"){
                         bindTestCase(lang,res,'CPPCodetoCompile',mode) ;
                     });
                 
-                    });
+                    });            
 
-            }
+    }
 
-            if(mode=="submit"){
-                fs.readFile('CodeSignature.cpp', 'utf8', function (error, data) {
-                    if (error) throw error;
-                     content= data.toString();
-                     let arr=content.split('$$$');
-                     content=arr[0]+ " " +codebyclient+" "+arr[1];
-                    
-                    fs.writeFile('CPPCodetoCompile.cpp', content, (err) => {
-                        if (err) throw err;
-                    
-                        console.log('code ready...binding testcases!');
-                        bindTestCase(lang,res,'CPPCodetoCompile',mode) ;
-                    });
-                
-                    });
-
-            }
+    else {
+       var result=[" We are Working on languages other than Java and C++, meanwhile do choose one from C++ or Java"];
+        res.send(result);
     }
 
 }
