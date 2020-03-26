@@ -1,7 +1,10 @@
 const {exec,execSync} = require('child_process');
 
 
-function javaCompile(res,filename,mode){
+function javaCompile(lang,res,filename,mode){
+
+
+if(lang=="java"){
 
 if(mode=="run"){
     var arr=[];
@@ -56,42 +59,70 @@ else if(mode="submit"){
     console.log(error.toString());
     return (error.toString());
     }
-    // ,
-    // function(err, stdout, stderr){
-    //     if(err){
-    //         console.log("err",err);
-    //         return({"compilation error":err});
-    //     }
-    //    else if(stderr){
-    //         console.log("stderr",stderr);
-    //         return({"compilation error":stderr});
-    //     }
-    //     else{
-        //  var java=   execSync('java ' +filename);
-        //  console.log(java.toString());
-            // , function(err, stdout, stderr){
-            //     if(err){
-            //         console.log("err",err);
-            //         return({"run time error":err});
-            //     }
-            //     else if(stderr){
-            //         console.log("stderr",stderr);
-            //         return({"run time error":stderr})
-            //     }
-            //     else{
-            //     console.log(stdout);
-            //     return({"results":stdout});
-            //     }
-            // });
-    }
-   // });
-
-
 
 }
 
+}
+else if(lang=="C++"){
+
+    if(mode=="run"){
+        var arr=[];
+     exec("g++ -o " + filename + " "+filename+".cpp", function(err, stdout, stderr){
+        if(err){
+            console.log("err",err);
+            arr.push(err.toString());
+            res.send(arr);
+        }
+       else if(stderr){
+            console.log("stderr",stderr);
+            ans.push(stderr.toString());
+            res.send(arr);
+        }
+        else{
+            exec('./'+filename , function(err, stdout, stderr){
+                if(err){
+                    console.log("err",err);
+                    arr.push(err.toString());
+                    res.send(arr);
+                }
+                else if(stderr){
+                    console.log("stderr",stderr);
+                    arr.push(stderr.toString());
+                    res.send(arr);
+                }
+                else{
+                console.log(stdout);
+                arr.push(stdout.toString());
+                res.send(arr);
+                }
+            });
+    }
+    });
+
+}
+    else if(mode="submit"){
+
+        try{
+        var javac=   execSync("g++ -o " + filename + " "+filename+".cpp" );
+        console.log(javac.toString());
+                    try{
+                        var java= execSync('./'+filename );
+                        console.log(java.toString());
+                        return (java.toString());
+                    }
+                    catch{
+                        console.log(error.toString());
+                        return (error.toString());
+                    }
+    
+        }catch(error){
+        console.log(error.toString());
+        return (error.toString());
+        }
+    
+    }
 
 
-//}
-
+}
+}
 module.exports=javaCompile;

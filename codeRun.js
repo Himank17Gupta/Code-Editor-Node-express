@@ -14,9 +14,10 @@ route.post('/run',(req,res)=>{
 
     var lang=req.body.lang;
     var code=req.body.code;
-    if(lang=="java"){
-    prepareCodeforTS(res,code,"run");
-    }
+   
+    prepareCodeforTS(lang,res,code,"run");
+    
+
 
 });
 
