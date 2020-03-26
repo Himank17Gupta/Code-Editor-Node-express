@@ -75,7 +75,7 @@ else if(lang=="C++"){
         }
        else if(stderr){
             console.log("stderr",stderr);
-            ans.push(stderr.toString());
+            arr.push(stderr.toString());
             res.send(arr);
         }
         else{
