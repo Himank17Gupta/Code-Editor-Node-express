@@ -6,7 +6,7 @@ const fs =require('fs');
 function JavaBindTestCase(res,filename,mode){
 
 console.log('bind for Test Case fxn called') ;
-
+var result=[];
 if(mode=="run"){
 
  fs.readFile(filename +'.java', 'utf8', function (error, data) {
@@ -19,7 +19,10 @@ if(mode=="run"){
         if (err) throw err;
     
         console.log('code ready...start compilation!');
-        JavaCompile(res,filename,mode);
+     // result.push(
+           JavaCompile(res,filename,mode);
+     //  );
+//      res.send(result);
     });
 
     });

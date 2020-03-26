@@ -4,28 +4,34 @@ const {exec,execSync} = require('child_process');
 function javaCompile(res,filename,mode){
 
 if(mode=="run"){
+    var arr=[];
  exec('javac ' + filename +'.java' , function(err, stdout, stderr){
     if(err){
         console.log("err",err);
-        res.json({"compilation error":err});
+        arr.push(err.toString());
+        res.send(arr);
     }
    else if(stderr){
         console.log("stderr",stderr);
-        res.json({"compilation error":stderr});
+        ans.push(stderr.toString());
+        res.send(arr);
     }
     else{
         exec('java ' +filename, function(err, stdout, stderr){
             if(err){
                 console.log("err",err);
-                res.json({"run time error":err});
+                arr.push(err.toString());
+                res.send(arr);
             }
             else if(stderr){
                 console.log("stderr",stderr);
-                res.json({"run time error":stderr})
+                arr.push(stderr.toString());
+                res.send(arr);
             }
             else{
             console.log(stdout);
-            res.json({"results":stdout});
+            arr.push(stdout.toString());
+            res.send(arr);
             }
         });
 }
