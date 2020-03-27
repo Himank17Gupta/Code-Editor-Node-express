@@ -50,7 +50,7 @@ else if(mode="submit"){
                     console.log(java.toString());
                     return (java.toString());
                 }
-                catch{
+                catch(error){
                     console.log(error.toString());
                     return (error.toString());
                 }
@@ -110,7 +110,7 @@ else if(lang=="C++"){
                         console.log(java.toString());
                         return (java.toString());
                     }
-                    catch{
+                    catch(error){
                         console.log(error.toString());
                         return (error.toString());
                     }
